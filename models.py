@@ -81,6 +81,8 @@ y_pred_2 = model_2.predict(x_test)
 accuracy_score(y_pred_2,y_test)*100
 
 
+
+
 # logistic regression without regularization 
 param_grid = {
     'penalty' : ['l1','l2','elasticnet',None],
@@ -96,3 +98,17 @@ model_3.fit(x_train,y_train)
 y_pred_3 =  model_3.predict(x_test)
 print(accuracy_score(y_test,y_pred_3)*100)
 
+
+
+
+# random forest classifier
+from sklearn.ensemble import RandomForestClassifier
+model_4 = RandomForestClassifier(n_estimators=100,
+                                  bootstrap=True,
+                                  max_depth=10,
+                                  min_samples_leaf=5,
+                                  max_features='sqrt')
+model_4.fit(x_train, y_train)
+y_pred = model_4.predict(x_test)
+accuracy = accuracy_score(y_test, y_pred)
+print(f"Accuracy: {accuracy * 100:.2f}%")
